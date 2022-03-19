@@ -37,3 +37,8 @@ function param($name, $default = null)
 {
     return ArrayHelper::getValue(Yii::$app->params, $name, $default);
 }
+
+function nf($value, $decimals = 0)
+{
+    return number_format((float)$value, $decimals, '.', ' ');
+}

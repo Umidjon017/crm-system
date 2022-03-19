@@ -16,11 +16,17 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'settings' => [
-            'class' => 'backend\modules\settings\Module',
-        ],
         'catalog' => [
             'class' => 'backend\modules\catalog\Module',
+        ],
+        'payment' => [
+            'class' => 'backend\modules\payment\Module',
+        ],
+        'notification' => [
+            'class' => 'backend\modules\notification\Module',
+        ],
+        'settings' => [
+            'class' => 'backend\modules\settings\Module',
         ],
     ],
     'components' => [

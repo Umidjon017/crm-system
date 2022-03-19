@@ -20,6 +20,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  *
+ * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
  * @property \common\models\SubjectPrice[] $subjectPrices
  * @property string $aliasModel
  */
@@ -78,6 +79,14 @@ abstract class Subject extends \yii\db\ActiveRecord
             'created_by' => Yii::t('models', 'Created By'),
             'updated_by' => Yii::t('models', 'Updated By'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRelTeacherSubjects()
+    {
+        return $this->hasMany(\common\models\RelTeacherSubject::className(), ['subject_id' => 'id']);
     }
 
     /**

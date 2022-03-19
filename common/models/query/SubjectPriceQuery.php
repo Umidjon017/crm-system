@@ -2,6 +2,8 @@
 
 namespace common\models\query;
 
+use common\models\SubjectPrice;
+
 /**
  * This is the ActiveQuery class for [[\common\models\SubjectPrice]].
  *
@@ -31,5 +33,10 @@ class SubjectPriceQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    public function active()
+    {
+        return $this->andWhere(['status' => SubjectPrice::STATUS_ACTIVE]);
     }
 }

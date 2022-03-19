@@ -12,6 +12,23 @@ use yii\helpers\ArrayHelper;
 class SubjectPrice extends BaseSubjectPrice
 {
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $related = $this->getRelatedRecords();
+            /** @var Subject $subject */
+            if (isset($related['subject']) && $subject = $related['subject']) {
+                $subject->save();
+                $this->subject_id = $subject->id;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public function behaviors()
     {
         return ArrayHelper::merge(
@@ -31,4 +48,35 @@ class SubjectPrice extends BaseSubjectPrice
             ]
         );
     }
+
+    #region iSOLID
+    public static function create(
+        Subject $subject,
+                $price
+    )
+    {
+        $model = new SubjectPrice();
+        $model->populateRelation('subject', $subject);
+        $model->price = $price;
+        $model->status = self::STATUS_ACTIVE;
+        return $model;
+    }
+
+    public static function createBySubjectId(
+        $subject_id,
+        $price
+    )
+    {
+        $model = new SubjectPrice();
+        $model->subject_id = $subject_id;
+        $model->price = $price;
+        $model->status = self::STATUS_ACTIVE;
+        return $model;
+    }
+
+    public function inactivate()
+    {
+        $this->status = self::STATUS_INACTIVE;
+    }
+    #endregion
 }
