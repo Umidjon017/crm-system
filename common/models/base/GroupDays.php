@@ -9,15 +9,11 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "_teacher".
+ * This is the base-model class for table "group_days".
  *
  * @property integer $id
- * @property string $full_name
- * @property integer $gender
- * @property string $birth_date
- * @property string $phone
- * @property string $address
- * @property string $photo
+ * @property integer $group_id
+ * @property integer $day_number
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -25,11 +21,10 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
- * @property \common\models\Group[] $groups
+ * @property \common\models\Group $group
  * @property string $aliasModel
  */
-abstract class Teacher extends \yii\db\ActiveRecord
+abstract class GroupDays extends \yii\db\ActiveRecord
 {
 
 
@@ -39,7 +34,7 @@ abstract class Teacher extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '_teacher';
+        return 'group_days';
     }
 
     /**
@@ -63,11 +58,9 @@ abstract class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['full_name', 'gender'], 'required'],
-            [['gender', 'status', 'is_deleted'], 'integer'],
-            [['address'], 'string'],
-            [['full_name', 'phone', 'photo'], 'string', 'max' => 255],
-            [['birth_date'], 'string', 'max' => 50]
+            [['group_id', 'day_number'], 'required'],
+            [['group_id', 'day_number', 'status', 'is_deleted'], 'integer'],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\Group::className(), 'targetAttribute' => ['group_id' => 'id']]
         ];
     }
 
@@ -78,12 +71,8 @@ abstract class Teacher extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'full_name' => Yii::t('models', 'Full Name'),
-            'gender' => Yii::t('models', 'Gender'),
-            'birth_date' => Yii::t('models', 'Birth Date'),
-            'phone' => Yii::t('models', 'Phone'),
-            'address' => Yii::t('models', 'Address'),
-            'photo' => Yii::t('models', 'Photo'),
+            'group_id' => Yii::t('models', 'Group ID'),
+            'day_number' => Yii::t('models', 'Day Number'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),
@@ -96,28 +85,20 @@ abstract class Teacher extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRelTeacherSubjects()
+    public function getGroup()
     {
-        return $this->hasMany(\common\models\RelTeacherSubject::className(), ['teacher_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroups()
-    {
-        return $this->hasMany(\common\models\Group::className(), ['teacher_id' => 'id']);
+        return $this->hasOne(\common\models\Group::className(), ['id' => 'group_id']);
     }
 
 
     
     /**
      * @inheritdoc
-     * @return \common\models\query\TeacherQuery the active query used by this AR class.
+     * @return \common\models\query\GroupDaysQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\TeacherQuery(get_called_class());
+        return new \common\models\query\GroupDaysQuery(get_called_class());
     }
 
 

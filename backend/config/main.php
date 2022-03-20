@@ -19,6 +19,9 @@ return [
         'catalog' => [
             'class' => 'backend\modules\catalog\Module',
         ],
+        'group' => [
+            'class' => 'backend\modules\group\Module',
+        ],
         'payment' => [
             'class' => 'backend\modules\payment\Module',
         ],

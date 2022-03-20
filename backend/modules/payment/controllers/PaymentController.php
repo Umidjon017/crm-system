@@ -97,7 +97,7 @@ class PaymentController extends \backend\modules\payment\controllers\base\Paymen
     public function actionIncome()
     {
         $searchModel  = new PaymentSearch;
-        $dataProvider = $searchModel->search(Yii::$app->request->get());
+        $dataProvider = $searchModel->searchIncome(Yii::$app->request->get());
 
         return $this->render('income', [
             'dataProvider' => $dataProvider,
@@ -112,7 +112,7 @@ class PaymentController extends \backend\modules\payment\controllers\base\Paymen
     public function actionOutcome()
     {
         $searchModel  = new PaymentSearch;
-        $dataProvider = $searchModel->search(Yii::$app->request->get());
+        $dataProvider = $searchModel->searchOutcome(Yii::$app->request->get());
 
         return $this->render('outcome', [
             'dataProvider' => $dataProvider,

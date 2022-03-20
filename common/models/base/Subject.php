@@ -22,6 +22,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
  * @property \common\models\SubjectPrice[] $subjectPrices
+ * @property \common\models\Group[] $groups
  * @property string $aliasModel
  */
 abstract class Subject extends \yii\db\ActiveRecord
@@ -95,6 +96,14 @@ abstract class Subject extends \yii\db\ActiveRecord
     public function getSubjectPrices()
     {
         return $this->hasMany(\common\models\SubjectPrice::className(), ['subject_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroups()
+    {
+        return $this->hasMany(\common\models\Group::className(), ['subject_id' => 'id']);
     }
 
 

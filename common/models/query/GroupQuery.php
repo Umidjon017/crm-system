@@ -2,14 +2,12 @@
 
 namespace common\models\query;
 
-use common\models\Teacher;
-
 /**
- * This is the ActiveQuery class for [[\common\models\Teacher]].
+ * This is the ActiveQuery class for [[\common\models\Group]].
  *
- * @see \common\models\Teacher
+ * @see \common\models\Group
  */
-class TeacherQuery extends \yii\db\ActiveQuery
+class GroupQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -19,7 +17,7 @@ class TeacherQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\Teacher[]|array
+     * @return \common\models\Group[]|array
      */
     public function all($db = null)
     {
@@ -28,15 +26,10 @@ class TeacherQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\Teacher|array|null
+     * @return \common\models\Group|array|null
      */
     public function one($db = null)
     {
         return parent::one($db);
-    }
-
-    public function active()
-    {
-        return $this->andWhere(['status' => Teacher::STATUS_ACTIVE]);
     }
 }

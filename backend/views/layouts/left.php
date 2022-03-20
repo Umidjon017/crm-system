@@ -32,28 +32,28 @@
                 'items' => [
                     ['label' => Yii::t('ui', 'Dashboard'), 'url' => ['/site/index'], 'icon' => 'home'],
                     ['label' => Yii::t('ui', 'References'), 'icon' => 'folder', 'items' => [
-                        ['label' => Yii::t('ui', 'Teacher'), 'icon' => 'file', 'url' => '/admin/catalog/teacher/index'],
-                        ['label' => Yii::t('ui', 'Subject'), 'icon' => 'file', 'url' => '/admin/catalog/subject/index'],
-                        ['label' => Yii::t('ui', 'Pupil'), 'icon' => 'file', 'url' => '/admin/catalog/pupil/index'],
-                        ['label' => Yii::t('ui', 'Room'), 'icon' => 'file', 'url' => '/admin/catalog/room/index'],
+                        ['label' => Yii::t('ui', 'Teacher'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
+                        ['label' => Yii::t('ui', 'Subject'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
+                        ['label' => Yii::t('ui', 'Pupil'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
+                        ['label' => Yii::t('ui', 'Room'), 'icon' => 'file', 'url' => ['/catalog/room/index']],
+                    ]],
+                    ['label' => Yii::t('ui', 'Group'), 'icon' => 'folder', 'items' => [
+                        ['label' => YIi::t('ui', 'All'), 'icon' => 'file-o', 'url' => ['/group/group/index']],
+                        ['label' => Yii::t('ui', 'Pending'), 'icon' => 'file-o', 'url' => ['/group/group/pending-list']],
+                        ['label' => Yii::t('ui', 'In Process'), 'icon' => 'file-o', 'url' => ['/group/group/in-process-list']],
+                        ['label' => Yii::t('ui', 'Finished'), 'icon' => 'file-o', 'url' => ['/group/group/finished-list']],
                     ]],
                     ['label' => Yii::t('ui', 'Payment'), 'icon' => 'money', 'items' => [
-                        ['label' => Yii::t('ui', 'Payment'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index'],
-                        ['label' => Yii::t('ui', 'Income'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=1&PaymentSearch%5Bstatus%5D='],
-                        ['label' => Yii::t('ui', 'Outcome'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=0&PaymentSearch%5Bstatus%5D='],
+                        ['label' => Yii::t('ui', 'Payment'), 'icon' => 'file-o', 'url' => ['/payment/payment/index']],
+                        ['label' => Yii::t('ui', 'Income'), 'icon' => 'file-o', 'url' => ['/payment/payment/income']],
+                        ['label' => Yii::t('ui', 'Outcome'), 'icon' => 'file-o', 'url' => ['/payment/payment/outcome']],
                     ]],
                     ['label' => Yii::t('ui', 'Notification'), 'icon' => 'folder', 'items' => [
-                        ['label' => Yii::t('ui', 'Notification'), 'icon' => 'file-o', 'url' => '/admin/notification/notification/index'],
+                        ['label' => Yii::t('ui', 'Notification'), 'icon' => 'file-o', 'url' => ['/notification/notification/index']],
                     ]],
                     ['label' => Yii::t('ui', 'Settings'), 'icon' => 'cogs', 'items' => [
-                        [
-                            'label' => Yii::t('ui', 'Translations'),
-                            'url' => ['/settings/source-message/list'],
-                            'icon' => 'language'
-                        ],
-                        [
-                            'label' => Yii::t('ui', 'Gii'), 'icon' => 'file-o', 'url' => '/gii'
-                        ],
+                        ['label' => Yii::t('ui', 'Translations'), 'url' => ['/settings/source-message/list'], 'icon' => 'language'],
+                        ['label' => Yii::t('ui', 'Gii'), 'icon' => 'file-o', 'url' => '/gii'],
                     ]],
                 ],
             ]
