@@ -34,11 +34,13 @@
                     ['label' => Yii::t('ui', 'References'), 'icon' => 'folder', 'items' => [
                         ['label' => Yii::t('ui', 'Teacher'), 'icon' => 'file', 'url' => '/admin/catalog/teacher/index'],
                         ['label' => Yii::t('ui', 'Subject'), 'icon' => 'file', 'url' => '/admin/catalog/subject/index'],
-                        ['label' => Yii::t('ui', 'Subject'), 'icon' => 'file', 'url' => '/admin/catalog/pupil/index'],
-                        ['label' => Yii::t('ui', 'Subject'), 'icon' => 'file', 'url' => '/admin/catalog/room/index'],
+                        ['label' => Yii::t('ui', 'Pupil'), 'icon' => 'file', 'url' => '/admin/catalog/pupil/index'],
+                        ['label' => Yii::t('ui', 'Room'), 'icon' => 'file', 'url' => '/admin/catalog/room/index'],
                     ]],
                     ['label' => Yii::t('ui', 'Payment'), 'icon' => 'money', 'items' => [
                         ['label' => Yii::t('ui', 'Payment'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index'],
+                        ['label' => Yii::t('ui', 'Income'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=1&PaymentSearch%5Bstatus%5D='],
+                        ['label' => Yii::t('ui', 'Outcome'), 'icon' => 'file-o', 'url' => '/admin/payment/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=0&PaymentSearch%5Bstatus%5D='],
                     ]],
                     ['label' => Yii::t('ui', 'Notification'), 'icon' => 'folder', 'items' => [
                         ['label' => Yii::t('ui', 'Notification'), 'icon' => 'file-o', 'url' => '/admin/notification/notification/index'],

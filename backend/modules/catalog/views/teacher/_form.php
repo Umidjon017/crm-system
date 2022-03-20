@@ -49,7 +49,7 @@ use yii\bootstrap\ActiveForm;
                 ]
             ]); ?>
 
-            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'phone')->textInput(['rows' => 2]) ?>
 
             <?= $form->field($model, 'photoFile')->fileInput([
                 'accept' => "image/png , image/jpeg"

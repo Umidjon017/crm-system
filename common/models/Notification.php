@@ -11,6 +11,12 @@ use yii\helpers\ArrayHelper;
  */
 class Notification extends BaseNotification
 {
+    const GROUP_ALL = 1;
+    const GROUP_TEACHER = 2;
+    const GROUP_PUPIL = 3;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
 
     public function behaviors()
     {
@@ -30,5 +36,35 @@ class Notification extends BaseNotification
                 # custom validation rules
             ]
         );
+    }
+
+    public static function create(
+        $title,
+        $description,
+        $group,
+        $status
+    )
+    {
+        $model = new Notification();
+
+        $model->title = $title;
+        $model->description = $description;
+        $model->group = $group;
+        $model->status = $status;
+
+        return $model;
+    }
+
+    public function editData(
+        $title,
+        $description,
+        $group,
+        $status
+    )
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->group = $group;
+        $this->status = $status;
     }
 }

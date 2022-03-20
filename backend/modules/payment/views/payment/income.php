@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
  * @var common\models\search\PaymentSearch $searchModel
  */
 
-$this->title = Yii::t('models', 'Payments');
+$this->title = Yii::t('models', 'Payment-income');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
@@ -25,15 +25,9 @@ if (isset($actionColumnTemplates)) {
 }
 $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
 ?>
-<div class="payment-index">
+<div class="payment-income">
 
     <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
-
-    <div class="clearfix crud-navigation">
-        <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', 'Add'), ['create'], ['class' => 'btn btn-success']) ?>
-        </div>
-    </div>
 
     <hr/>
 

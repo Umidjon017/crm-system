@@ -11,6 +11,15 @@ use yii\helpers\ArrayHelper;
  */
 class Room extends BaseRoom
 {
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 0;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
+    const TYPE_ONE = 1;
+    const TYPE_FIFE = 5;
+    const TYPE_NINE = 9;
 
     public function behaviors()
     {

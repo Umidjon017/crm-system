@@ -1,99 +1,82 @@
 <?php
+use common\helpers\PaymentHelper;
 
-use yii\helpers\Html;
+use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
+use yii\helpers\Html;
+use yii\widgets\MaskedInput;
 
 /**
-* @var yii\web\View $this
-* @var common\models\Payment $model
-* @var yii\widgets\ActiveForm $form
-*/
+ * @var yii\web\View $this
+ * @var common\models\Payment $model
+ * @var yii\widgets\ActiveForm $form
+ */
 
 ?>
 
 <div class="payment-form">
 
     <?php $form = ActiveForm::begin([
-    'id' => 'Payment',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-danger',
-    'fieldConfig' => [
-             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-             'horizontalCssClasses' => [
-                 'label' => 'col-sm-2',
-                 #'offset' => 'col-sm-offset-4',
-                 'wrapper' => 'col-sm-8',
-                 'error' => '',
-                 'hint' => '',
-             ],
-         ],
-    ]
-    );
+            'id' => 'Payment',
+            'layout' => 'horizontal',
+            'enableClientValidation' => true,
+            'errorSummaryCssClass' => 'error-summary alert alert-danger',
+            'fieldConfig' => [
+                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                'horizontalCssClasses' => [
+                    'label' => 'col-sm-2',
+                    #'offset' => 'col-sm-offset-4',
+                    'wrapper' => 'col-sm-8',
+                    'error' => '',
+                    'hint' => '',
+                ],
+            ],
+        ]);
     ?>
 
-    <div class="">
-        <?php $this->beginBlock('main'); ?>
+    <section>
+        <div>
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <p>
-            
+            <?= $form->field($model, 'amount')->widget(MaskedInput::classname(), [
+                'clientOptions' => [
+                    'alias' => 'decimal',
+                    'groupSeparator' => ' ',
+                    'autoGroup' => true,
+                    'removeMaskOnSubmit' => true,
+                    'rightAlign' => false
+                ],
+            ]); ?>
 
-<!-- attribute name -->
-			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter the date ...'],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                    'format' => 'yyyy--mm-dd'
+                ]
+            ]); ?>
 
-<!-- attribute date -->
-			<?= $form->field($model, 'date')->textInput() ?>
+            <?= $form->field($model, 'type')->dropDownList(PaymentHelper::getTypeList(), ['prompt' => 'Choose type...']) ?>
 
-<!-- attribute type -->
-			<?= $form->field($model, 'type')->textInput() ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 2]) ?>
 
-<!-- attribute description -->
-			<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'status')->dropDownList(PaymentHelper::getStatusList()) ?>
+        </div>
 
-<!-- attribute amount -->
-			<?= $form->field($model, 'amount')->textInput() ?>
-
-<!-- attribute status -->
-			<?= $form->field($model, 'status')->textInput() ?>
-
-<!-- attribute is_deleted -->
-			<?= $form->field($model, 'is_deleted')->textInput() ?>
-        </p>
-        <?php $this->endBlock(); ?>
-        
-        <?=
-    Tabs::widget(
-                 [
-                    'encodeLabels' => false,
-                    'items' => [ 
-                        [
-    'label'   => Yii::t('models', 'Payment'),
-    'content' => $this->blocks['main'],
-    'active'  => true,
-],
-                    ]
-                 ]
-    );
-    ?>
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
-
-        <?= Html::submitButton(
-        '<span class="glyphicon glyphicon-check"></span> ' .
-        ($model->isNewRecord ? 'Create' : 'Save'),
-        [
-        'id' => 'save-' . $model->formName(),
-        'class' => 'btn btn-success'
-        ]
-        );
-        ?>
-
+        <div class="text-center">
+            <?= Html::submitButton(
+                '<span class="glyphicon glyphicon-check"></span> ' .
+                ($model->isNewRecord ? 'Create' : 'Save'),
+                [
+                    'id' => 'save-' . $model->formName(),
+                    'class' => 'btn btn-success'
+                ]);
+            ?>
+        </div>
         <?php ActiveForm::end(); ?>
-
-    </div>
-
+    </section>
 </div>
-

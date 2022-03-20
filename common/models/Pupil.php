@@ -2,8 +2,7 @@
 
 namespace common\models;
 
-use Yii;
-use \common\models\base\Pupil as BasePupil;
+use common\models\base\Pupil as BasePupil;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -11,6 +10,11 @@ use yii\helpers\ArrayHelper;
  */
 class Pupil extends BasePupil
 {
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 0;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
 
     public function behaviors()
     {
@@ -31,4 +35,11 @@ class Pupil extends BasePupil
             ]
         );
     }
+
+    #region Getters
+    public static function getCount()
+    {
+        return Pupil::find()->count();
+    }
+    #endregion
 }

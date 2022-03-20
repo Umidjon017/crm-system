@@ -1,99 +1,77 @@
 <?php
 
-use yii\helpers\Html;
+use common\helpers\PupilHelper;
+use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
+use yii\helpers\Html;
 
 /**
-* @var yii\web\View $this
-* @var common\models\Pupil $model
-* @var yii\widgets\ActiveForm $form
-*/
+ * @var yii\web\View $this
+ * @var common\models\Pupil $model
+ * @var yii\widgets\ActiveForm $form
+ */
 
 ?>
 
 <div class="pupil-form">
 
     <?php $form = ActiveForm::begin([
-    'id' => 'Pupil',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-danger',
-    'fieldConfig' => [
-             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-             'horizontalCssClasses' => [
-                 'label' => 'col-sm-2',
-                 #'offset' => 'col-sm-offset-4',
-                 'wrapper' => 'col-sm-8',
-                 'error' => '',
-                 'hint' => '',
-             ],
-         ],
-    ]
-    );
-    ?>
+            'id' => 'Pupil',
+            'layout' => 'horizontal',
+            'enableClientValidation' => true,
+            'errorSummaryCssClass' => 'error-summary alert alert-danger',
+            'fieldConfig' => [
+                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                'horizontalCssClasses' => [
+                    'label' => 'col-sm-2',
+                    #'offset' => 'col-sm-offset-4',
+                    'wrapper' => 'col-sm-8',
+                    'error' => '',
+                    'hint' => '',
+                ],
+            ],
+        ]
+    ); ?>
 
-    <div class="">
-        <?php $this->beginBlock('main'); ?>
+    <section>
+        <div>
+            <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
-        <p>
-            
+            <?= $form->field($model, 'birth_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter birth date ...'],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                    'format' => 'dd-mm-yyyy'
+                ]
+            ]); ?>
 
-<!-- attribute full_name -->
-			<?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'gender')->dropDownList(PupilHelper::getGenderList(), [
+                'prompt' => Yii::t('ui', 'Select')
+            ]) ?>
 
-<!-- attribute gender -->
-			<?= $form->field($model, 'gender')->textInput() ?>
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-<!-- attribute status -->
-			<?= $form->field($model, 'status')->textInput() ?>
+            <?= $form->field($model, 'address')->textarea(['rows' => 2]) ?>
 
-<!-- attribute is_deleted -->
-			<?= $form->field($model, 'is_deleted')->textInput() ?>
+            <?= $form->field($model, 'status')->dropDownList(PupilHelper::getStatusList()) ?>
+        </div>
 
-<!-- attribute address -->
-			<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute birth_date -->
-			<?= $form->field($model, 'birth_date')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute phone -->
-			<?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-        </p>
-        <?php $this->endBlock(); ?>
-        
-        <?=
-    Tabs::widget(
-                 [
-                    'encodeLabels' => false,
-                    'items' => [ 
-                        [
-    'label'   => Yii::t('models', 'Pupil'),
-    'content' => $this->blocks['main'],
-    'active'  => true,
-],
-                    ]
-                 ]
-    );
-    ?>
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
 
-        <?= Html::submitButton(
-        '<span class="glyphicon glyphicon-check"></span> ' .
-        ($model->isNewRecord ? 'Create' : 'Save'),
-        [
-        'id' => 'save-' . $model->formName(),
-        'class' => 'btn btn-success'
-        ]
-        );
-        ?>
+        <div class="text-center">
+            <?= Html::submitButton(
+                '<span class="glyphicon glyphicon-check"></span> ' .
+                ($model->isNewRecord ? 'Create' : 'Save'),
+                [
+                    'id' => 'save-' . $model->formName(),
+                    'class' => 'btn btn-success'
+                ]
+            ); ?>
+        </div>
 
         <?php ActiveForm::end(); ?>
-
-    </div>
-
+    </section>
 </div>
-
