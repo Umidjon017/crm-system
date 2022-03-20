@@ -37,18 +37,21 @@
                         ['label' => Yii::t('ui', 'Pupil'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
                         ['label' => Yii::t('ui', 'Room'), 'icon' => 'file', 'url' => ['/catalog/room/index']],
                     ]],
-                    ['label' => Yii::t('ui', 'Group'), 'icon' => 'folder', 'items' => [
+                    ['label' => Yii::t('ui', 'Groups'), 'icon' => 'folder', 'items' => [
                         ['label' => YIi::t('ui', 'All'), 'icon' => 'file-o', 'url' => ['/group/group/index']],
                         ['label' => Yii::t('ui', 'Pending'), 'icon' => 'file-o', 'url' => ['/group/group/pending-list']],
                         ['label' => Yii::t('ui', 'In Process'), 'icon' => 'file-o', 'url' => ['/group/group/in-process-list']],
                         ['label' => Yii::t('ui', 'Finished'), 'icon' => 'file-o', 'url' => ['/group/group/finished-list']],
+                    ]],
+                    ['label' => Yii::t('ui', 'Clients'), 'icon' => 'users', 'items' => [
+                        ['label' => Yii::t('ui', 'Clients'), 'icon' => 'file-o', 'url' => ['/client/client/index']],
                     ]],
                     ['label' => Yii::t('ui', 'Payment'), 'icon' => 'money', 'items' => [
                         ['label' => Yii::t('ui', 'Payment'), 'icon' => 'file-o', 'url' => ['/payment/payment/index']],
                         ['label' => Yii::t('ui', 'Income'), 'icon' => 'file-o', 'url' => ['/payment/payment/income']],
                         ['label' => Yii::t('ui', 'Outcome'), 'icon' => 'file-o', 'url' => ['/payment/payment/outcome']],
                     ]],
-                    ['label' => Yii::t('ui', 'Notification'), 'icon' => 'folder', 'items' => [
+                    ['label' => Yii::t('ui', 'Notifications'), 'icon' => 'folder', 'items' => [
                         ['label' => Yii::t('ui', 'Notification'), 'icon' => 'file-o', 'url' => ['/notification/notification/index']],
                     ]],
                     ['label' => Yii::t('ui', 'Settings'), 'icon' => 'cogs', 'items' => [

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
-            <?= Html::a(Yii::t('ui', 'Cansel'), ['index'], ['class' => 'btn btn-danger']) ?>
+            <?= Html::a(Yii::t('ui', 'Cancel'), ['index'], ['class' => 'btn btn-danger']) ?>
         </div>
     </div>
 

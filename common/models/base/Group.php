@@ -33,6 +33,7 @@ use yii\behaviors\TimestampBehavior;
  * @property \common\models\Subject $subject
  * @property \common\models\Teacher $teacher
  * @property \common\models\GroupDays[] $groupDays
+ * @property \common\models\RelClientGroup[] $relClientGroups
  * @property string $aliasModel
  */
 abstract class Group extends \yii\db\ActiveRecord
@@ -126,6 +127,14 @@ abstract class Group extends \yii\db\ActiveRecord
     public function getGroupDays()
     {
         return $this->hasMany(\common\models\GroupDays::className(), ['group_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRelClientGroups()
+    {
+        return $this->hasMany(\common\models\RelClientGroup::className(), ['group_id' => 'id']);
     }
 
 

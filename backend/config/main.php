@@ -22,6 +22,9 @@ return [
         'group' => [
             'class' => 'backend\modules\group\Module',
         ],
+        'client' => [
+            'class' => 'backend\modules\client\Module',
+        ],
         'payment' => [
             'class' => 'backend\modules\payment\Module',
         ],
